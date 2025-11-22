@@ -19,7 +19,7 @@ async def create_driver(driver: Driver):
 async def get_drivers():
     drivers = []
     async for driver in db.drivers.find():
-        driver["id"] = str(driver.pop("_id"))
+        driver["_id"] = str(driver.pop("_id"))
         drivers.append(Driver(**driver))
     return drivers
 

@@ -17,7 +17,7 @@ async def create_truck(truck: Truck):
 async def get_trucks():
     trucks = []
     async for truck in db.trucks.find():
-        truck["id"] = str(truck.pop("_id"))
+        truck["_id"] = str(truck.pop("_id"))
         trucks.append(Truck(**truck))
     return trucks
 
