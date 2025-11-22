@@ -30,20 +30,32 @@ async def update_mileage(truck_id: str, mileage: float):
 
 @router.post("/{truck_id}/incidents")
 async def add_incident(truck_id: str, incident: Incident):
-    result = await db.trucks.update_one(
-        {"_id": ObjectId(truck_id)}, 
-        {"$push": {"incidents": incident.dict()}}
-    )
-    if result.modified_count == 1:
-        return {"message": "Incident added"}
-    raise HTTPException(status_code=404, detail="Truck not found")
+    print(f"DEBUG: Adding incident to truck {truck_id}: {incident}")
+    try:
+        result = await db.trucks.update_one(
+            {"_id": ObjectId(truck_id)}, 
+            {"$push": {"incidents": incident.dict()}}
+        )
+        print(f"DEBUG: Update result matched_count: {result.matched_count}, modified_count: {result.modified_count}")
+        if result.modified_count == 1:
+            return {"message": "Incident added"}
+        raise HTTPException(status_code=404, detail=f"Truck {truck_id} not found or not modified")
+    except Exception as e:
+        print(f"DEBUG: Error adding incident: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
 
 @router.post("/{truck_id}/repairs")
 async def add_repair(truck_id: str, repair: Repair):
-    result = await db.trucks.update_one(
-        {"_id": ObjectId(truck_id)}, 
-        {"$push": {"repairs": repair.dict()}}
-    )
-    if result.modified_count == 1:
-        return {"message": "Repair added"}
-    raise HTTPException(status_code=404, detail="Truck not found")
+    print(f"DEBUG: Adding repair to truck {truck_id}: {repair}")
+    try:
+        result = await db.trucks.update_one(
+            {"_id": ObjectId(truck_id)}, 
+            {"$push": {"repairs": repair.dict()}}
+        )
+        print(f"DEBUG: Update result matched_count: {result.matched_count}, modified_count: {result.modified_count}")
+        if result.modified_count == 1:
+            return {"message": "Repair added"}
+        raise HTTPException(status_code=404, detail=f"Truck {truck_id} not found or not modified")
+    except Exception as e:
+        print(f"DEBUG: Error adding repair: {e}")
+        raise HTTPException(status_code=500, detail=str(e))

@@ -1,6 +1,7 @@
 from fastapi import APIRouter
 from backend.database import db
 from backend.models import ContainerStatus, AssignmentType
+from bson import ObjectId
 
 router = APIRouter()
 
@@ -21,7 +22,10 @@ async def driver_performance():
         truck_incidents = 0
         truck_repairs = 0
         if driver.get("assigned_truck_id"):
-            truck = await db.trucks.find_one({"_id": driver["assigned_truck_id"]})
+            try:
+                truck = await db.trucks.find_one({"_id": ObjectId(driver["assigned_truck_id"])})
+            except:
+                truck = None
             if truck:
                 truck_incidents = len(truck.get("incidents", []))
                 truck_repairs = len(truck.get("repairs", []))
