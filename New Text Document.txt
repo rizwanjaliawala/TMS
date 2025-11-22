@@ -1,0 +1,22 @@
+create a transport management system in which i can add , view , edit, update Drivers Data that contains (Driver Name, CDL, CDL Expire Date , Driver Picture , CDL Picture, Date of Birth, Assigned Truck ) 
+i can add daily assignment to drivers, type of assignment are (Drayage,  Amazon Delivery, Amazon Relay, yard moves or Day Off) 
+if i am assigning Drayage i have to enter container num, empty return num or bare chassis , terminal , Container Cat: FBU or Floor loaded
+if i am assigning amazon delivery i have to enter ISA ID, Container Number, Appt Date & Time , Appt Status (Successfull, Rejected, NCNS(if i am slecting NCNS or rejected  it asks for the reason) 
+if I am selecting amazon relay i have to add load IDs , Origin , Destination, Expected Pay Out
+if I am selecting day Off ( it asks me for paid or unpaid) and (reason for day off)
+
+for trucks data i have to enter , VIN num , Make ,Color, Picture, Year, Type (Sleeper/ Day Cab) , Lic Plate ,Insurance Cab Card Picture, mileage and updates mileage on every day start by asking mileage and calculates mileage so it can be shown on reports when selected to show reports on any truck for the specific period 
+for trucks also add a card to enter incident report, (where i can report incident with details , location and picture and videos if available)
+for trucks i can also add repairs (i can add any repair, reason , picture , invoice in PDF or picture format , amount of repair, mechanic name and contact, location of repair ) 
+
+for drayage containers i picked from port i can change status from planned to  picked to delivered to empty to Returned 
+if amazon delivery is successfull change container status to empty 
+i can add container details, (container num , mbl , terminal, FBU or Floor loaded , ETAs , SSL )
+
+Reports include driver performance report which includes driver container pickups, empty returned, incident , repairs to the truck assigned, empty returned, amazon deliveries, amazon relay laod count and amount 
+vehicle performance report mileage , incidents, repairs, count of pickups , empty returns , amazon deliveris, amazon relay 
+empty container report( containers that have empty status includes container num and SSL)
+
+
+backend will be Python Fast API , Front END will be HTML, CSS , JavaScript, Database will be MongoDB (database name is trans) ,UI UX Front end  will be Dynamic Ultra modern ,Glass Look , Transparent with a picture in background  , Vibrant  , 
+

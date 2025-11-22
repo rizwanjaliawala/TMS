@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transport Management System</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body>
+    <div class="background-image"></div>
+    <div class="app-container">
+        <nav class="sidebar glass">
+            <div class="logo">
+                <i class="fa-solid fa-truck-fast"></i> TMS
+            </div>
+            <ul class="nav-links">
+                <li onclick="navigate('dashboard')" class="active"><i class="fa-solid fa-chart-line"></i> Dashboard</li>
+                <li onclick="navigate('drivers')"><i class="fa-solid fa-id-card"></i> Drivers</li>
+                <li onclick="navigate('trucks')"><i class="fa-solid fa-truck"></i> Trucks</li>
+                <li onclick="navigate('incidents')"><i class="fa-solid fa-triangle-exclamation"></i> Incidents</li>
+                <li onclick="navigate('repairs')"><i class="fa-solid fa-wrench"></i> Repairs</li>
+                <li onclick="navigate('assignments')"><i class="fa-solid fa-calendar-check"></i> Assignments</li>
+                <li onclick="navigate('containers')"><i class="fa-solid fa-box-open"></i> Containers</li>
+                <li onclick="navigate('reports')"><i class="fa-solid fa-file-invoice"></i> Reports</li>
+            </ul>
+        </nav>
+        <main class="content glass" id="main-content">
+            <!-- Dynamic Content Loaded Here -->
+            <h1>Welcome to TMS</h1>
+        </main>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.28/jspdf.plugin.autotable.min.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/views/drivers.js"></script>
+    <script src="js/views/trucks.js"></script>
+    <script src="js/views/incidents.js"></script>
+    <script src="js/views/repairs.js"></script>
+    <script src="js/views/assignments.js"></script>
+    <script src="js/views/containers.js"></script>
+    <script src="js/views/reports.js"></script>
+    <script src="js/app.js"></script>
+</body>
+
+</html>
