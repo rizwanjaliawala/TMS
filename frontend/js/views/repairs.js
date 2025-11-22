@@ -45,7 +45,7 @@ window.showAddRepairForm = async function () {
     try {
         const trucks = await API.get('/trucks/');
         const options = trucks.length > 0
-            ? trucks.map(t => `<option value="${t._id}">${t.make} (${t.vin})</option>`).join('')
+            ? trucks.map(t => `<option value="${t.id}">${t.make} (${t.vin})</option>`).join('')
             : '<option value="" disabled selected>No trucks available - Add a truck first</option>';
 
         mainContent.innerHTML = `
