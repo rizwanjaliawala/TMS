@@ -4,3 +4,4 @@ motor
 python-multipart
 pydantic
 gunicorn
+dnspython
