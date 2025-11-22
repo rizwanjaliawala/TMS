@@ -44,8 +44,13 @@ window.renderIncidents = async function () {
 window.showAddIncidentForm = async function () {
     try {
         const trucks = await API.get('/trucks/');
+        console.log("Fetched trucks for incidents:", trucks); // Debug log
         const options = trucks.length > 0
-            ? trucks.map(t => `<option value="${t.id}">${t.make} (${t.vin})</option>`).join('')
+            ? trucks.map(t => {
+                const id = t.id || t._id;
+                if (!id) console.error("Truck missing ID:", t);
+                return `<option value="${id}">${t.make} (${t.vin})</option>`;
+            }).join('')
             : '<option value="" disabled selected>No trucks available - Add a truck first</option>';
 
         mainContent.innerHTML = `
