@@ -35,6 +35,16 @@ app.include_router(assignments.router, prefix="/api/assignments", tags=["Assignm
 app.include_router(containers.router, prefix="/api/containers", tags=["Containers"])
 app.include_router(reports.router, prefix="/api/reports", tags=["Reports"])
 
+@app.get("/api/health")
+async def health_check():
+    from backend.database import client
+    try:
+        # Ping the database
+        await client.admin.command('ping')
+        return {"status": "healthy", "database": "connected"}
+    except Exception as e:
+        return {"status": "unhealthy", "database": "disconnected", "error": str(e)}
+
 @app.get("/")
 async def root():
     return FileResponse(os.path.join(FRONTEND_DIR, "index.html"))
