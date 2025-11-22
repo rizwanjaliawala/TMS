@@ -5,7 +5,9 @@ class API {
         try {
             const response = await fetch(`${API_BASE_URL}${endpoint}`);
             if (!response.ok) {
-                throw new Error(`API Error: ${response.status} ${response.statusText}`);
+                const errorData = await response.json().catch(() => ({}));
+                const errorMessage = errorData.message || response.statusText;
+                throw new Error(`API Error: ${response.status} - ${errorMessage}`);
             }
             return await response.json();
         } catch (error) {
