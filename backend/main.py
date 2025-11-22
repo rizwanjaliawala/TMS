@@ -24,14 +24,16 @@ async def global_exception_handler(request, exc):
     )
 
 # Create uploads directory if not exists
-os.makedirs("backend/uploads", exist_ok=True)
+# Vercel filesystem is read-only, use /tmp for temporary storage
+UPLOAD_DIR = "/tmp/uploads"
+os.makedirs(UPLOAD_DIR, exist_ok=True)
 
 # Get absolute path to frontend directory
 # Assuming running from h:/Trans, frontend is at h:/Trans/frontend
 FRONTEND_DIR = os.path.abspath("frontend")
 
 # Static files
-app.mount("/uploads", StaticFiles(directory="backend/uploads"), name="uploads")
+app.mount("/uploads", StaticFiles(directory=UPLOAD_DIR), name="uploads")
 app.mount("/css", StaticFiles(directory=os.path.join(FRONTEND_DIR, "css")), name="css")
 app.mount("/js", StaticFiles(directory=os.path.join(FRONTEND_DIR, "js")), name="js")
 

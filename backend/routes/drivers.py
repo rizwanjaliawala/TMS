@@ -41,7 +41,10 @@ async def update_driver(driver_id: str, driver: Driver):
 
 @router.post("/upload")
 async def upload_file(file: UploadFile = File(...)):
-    file_location = f"backend/uploads/{file.filename}"
+    # Import UPLOAD_DIR from main to avoid circular imports, or define it here
+    # Ideally, define logic here. For Vercel, use /tmp
+    upload_dir = "/tmp/uploads"
+    file_location = f"{upload_dir}/{file.filename}"
     with open(file_location, "wb+") as buffer:
         shutil.copyfileobj(file.file, buffer)
     return {"url": f"/uploads/{file.filename}"}
